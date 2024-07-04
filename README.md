@@ -44,8 +44,8 @@ You can download the latest version of the QR-code APK from the following link:
 Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/chetanr250/qr-code
-cd qr-code
+git clone https://github.com/chetanr250/qr_code
+cd qr_code
 flutter pub get
 flutter run
 ```
