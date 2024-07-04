@@ -55,8 +55,8 @@ You can download the latest version of the My Awesome App APK from the following
 Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/chetanr250/qr-code
-cd qr-code
+git clone https://github.com/chetanr250/qr_code
+cd qr_code
 flutter pub get
 flutter run
 ```
