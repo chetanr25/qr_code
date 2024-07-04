@@ -7,7 +7,8 @@
    - [QR Code Scanner](#qr-code-scanner)
    - [QR Code Generator](#qr-code-generator)
 3. [Download APK](#apk-download)
-4. [Installation](#installation)
+4. [Screenshots](#screenshots)
+5. [Installation](#installation)
 
 ## Overview <a name="overview"></a>
 
@@ -35,17 +36,27 @@ QR Code App is a Flutter application designed to provide users with the ability 
 
 ## APK Download <a name="apk-download"></a>
 
-You can download the latest version of the QR-code APK from the following link:
+You can download the latest version of the My Awesome App APK from the following link:
 
-[Download APK](https://github.com/chetanr250/qr-code/raw/main/apk/app-release.apk)
+[Download APK](https://github.com/chetanr250/qr_code/raw/main/apk/app-release.apk)
+
+## Screenshots <a name="screenshots"></a>
+
+![Generate QR Code](demo_imgs/generate_qr.png)
+
+###### Gradient backgroud feature
+
+![Gradient backgroud feature video](demo_imgs/gradient_demo.mp4)
+![Customize QR Code Video](demo_imgs/custom_qr_video.mp4)
+![Scan QR Code Video](demo_imgs/QR_scanner.mp4)
 
 ## Installation <a name="installation"></a>
 
 Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/chetanr250/qr_code
-cd qr_code
+git clone https://github.com/chetanr250/qr-code
+cd qr-code
 flutter pub get
 flutter run
 ```
