@@ -45,17 +45,17 @@ You can download the latest version of the My Awesome App APK from the following
 
 ![Generate QR Code](demo_imgs/generate_qr.png)
 
-![[Gradient backgroud feature](demo_imgs/gradient_demo.mp4)](demo_imgs/generate_qr.png)
-
 ### [Gradient backgroud feature video](demo_imgs/gradient_demo.mp4)
 
-![[Gradient backgroud feature](demo_imgs/custom_qr_video.mp4)](demo_imgs/custom_qr_image.png)
+[![Gradient backgroud feature](demo_imgs/generate_qr.png)](demo_imgs/gradient_demo.mp4)
 
 ### [Customize QR Code Video](demo_imgs/custom_qr_video.mp4)
 
-![[Customize QR Code](demo_imgs/QR_scanner.mp4)](demo_imgs/qr_scanner_image.jpeg)
+[![Gradient backgroud feature](demo_imgs/custom_qr_image.png)](demo_imgs/custom_qr_video.mp4)
 
 ### [Scan QR Code Video](demo_imgs/QR_scanner.mp4)
+
+[![Customize QR Code](demo_imgs/qr_scanner_image.jpeg)](demo_imgs/QR_scanner.mp4)
 
 ## Installation <a name="installation"></a>
 
