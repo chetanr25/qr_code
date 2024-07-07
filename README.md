@@ -39,7 +39,7 @@ QR Code App is a Flutter application designed to provide users with the ability 
 
 You can download the latest version of the My Awesome App APK from the following link:
 
-[Download APK](https://github.com/chetanr250/qr_code/raw/main/demo_imgs/app)
+[Download APK](https://github.com/chetanr250/qr_code/raw/main/demo_imgs/app-release.apk)
 
 ## Screenshots <a name="screenshots"></a>
 
