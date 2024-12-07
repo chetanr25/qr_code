@@ -1,65 +1,83 @@
-# QR Code App
+# **QR Code App** 🚀
 
-## Table of Contents
+## **Table of Contents** 📖
 
-1. [Overview](#overview)
-2. [Features](#features)
-   - [QR Code Scanner](#qr-code-scanner)
-   - [QR Code Generator](#qr-code-generator)
-3. [Download APK](#apk-download)
-4. [Screenshots](#screenshots)
-5. [Installation](#installation)
-6. [License](#license)
+1. [**Overview**](#overview)
+2. [**Features**](#features)
+   - [**QR Code Scanner**](#qr-code-scanner)
+   - [**QR Code Generator**](#qr-code-generator)
+3. [**Screenshots**](#screenshots)
+4. [**Installation**](#installation)
+5. [**License**](#license)
 
-## Overview <a name="overview"></a>
+---
 
-QR Code App is a Flutter application designed to provide users with the ability to both scan and generate QR codes conveniently. It offers fast scanning capabilities, supports various types of QR code content including URLs, UPI payments, SMS, mail, location coordinates, NFC, and MMS. The QR code generator allows users to create QR codes for any type of text, with customization options such as size adjustment, gradient background selection, shape modification (square or circle), color alteration, and image embedding.
+### **Download APK** 📥
 
-## Features <a name="features"></a>
+[<img src="https://camo.githubusercontent.com/2b0b605d77141fd0ff5f5aa8159f6121c4d4bd213d5ee2aba1753d678faaf28c/68747470733a2f2f692e6962622e636f2f71306d6463345a2f6765742d69742d6f6e2d6769746875622e706e67" width="350"/>](https://github.com/chetanr250/qr_code/raw/main/demo_imgs/app-release.apk)
 
-### QR Code Scanner <a name="qr-code-scanner"></a>
+---
 
-- Fast scanning of QR codes
-- Supports various types of QR code content including URLs, UPI payments, SMS, mail, location coordinates, NFC, and MMS
-- Flash and flip camera settings for user convenience
-- Ability to redirect to websites when scanning URLs
+## **Overview** 🖥️ <a name="overview"></a>
 
-### QR Code Generator <a name="qr-code-generator"></a>
+**QR Code App** is a powerful **Flutter application** that enables users to both **scan** and **generate QR codes** with ease. 
 
-- Generates QR codes for any type of text
-- Adjusts QR code size based on input text length
-- Provides various gradient options for background customization
-- Option to customize QR code shape (square or circle)
-- Allows changing QR code colors
-- Enables image embedding into QR codes
-- Ability to save generated QR codes to the device gallery with or without gradient background
-- Supports direct sharing of generated QR codes to other applications
+### **Key Highlights** ✨:
 
-## APK Download <a name="apk-download"></a>
+- **⚡ Fast and reliable scanning** for QR codes, supporting content like **URLs**, **UPI payments**, **SMS**, **emails**, **locations**, **NFC**, and **MMS**.
+- A versatile **QR Code Generator** with options for:
+  - 🖌️ **Custom sizes**
+  - 🌈 **Gradient backgrounds**
+  - 🔲 **Shape modifications** (square or circle)
+  - 🎨 **Color adjustments**
+  - 🖼️ **Image embedding**
 
-You can download the latest version of the My Awesome App APK from the following link:
+---
 
-[Download APK](https://github.com/chetanr250/qr_code/raw/main/demo_imgs/app-release.apk)
+## **Features** 🛠️ <a name="features"></a>
 
-## Screenshots <a name="screenshots"></a>
+### **QR Code Scanner** 🔍 <a name="qr-code-scanner"></a>
+
+- **⚡ Lightning-fast scanning**
+- Supports a variety of QR code content: **🌐 URLs**, **💳 UPI payments**, **✉️ SMS**, **📧 mail**, **📍 locations**, and **📡 NFC**.
+- Includes **🔦 flash** and **🔄 camera flip** for convenience.
+- **🌐 Auto-redirects** to websites when scanning URLs.
+
+---
+
+### **QR Code Generator** 🖼️ <a name="qr-code-generator"></a>
+
+- **Generate QR codes** for any text type.
+- 📏 Adjust QR code **size** dynamically.
+- 🌈 Choose from various **gradient backgrounds**.
+- 🔲 Customize QR code **shapes** (square or circle) and **colors**.
+- 🖼️ Embed **images** into QR codes.
+- 💾 **Save** QR codes to your gallery with or without gradient backgrounds.
+- 🔗 **Share QR codes** directly to other apps.
+
+---
+
+## **Screenshots** 📸 <a name="screenshots"></a>
 
 ![Generate QR Code](demo_imgs/generate_qr.png)
 
-### [Gradient backgroud feature video](demo_imgs/gradient_demo.mp4)
+### [**Gradient Background Feature Video** 🎥](demo_imgs/gradient_demo.mp4)
 
-[![Gradient backgroud feature](demo_imgs/gradient_image.jpeg)](demo_imgs/gradient_demo.mp4)
+[![Gradient Background Feature](demo_imgs/gradient_image.jpeg)](demo_imgs/gradient_demo.mp4)
 
-### [Customize QR Code Video](demo_imgs/custom_qr_video.mp4)
+### [**Customize QR Code Video** 🎥](demo_imgs/custom_qr_video.mp4)
 
-[![Gradient backgroud feature](demo_imgs/custom_qr_image.png)](demo_imgs/custom_qr_video.mp4)
+[![Customize QR Code Feature](demo_imgs/custom_qr_image.png)](demo_imgs/custom_qr_video.mp4)
 
-### [Scan QR Code Video](demo_imgs/QR_scanner.mp4)
+### [**Scan QR Code Video** 🎥](demo_imgs/QR_scanner.mp4)
 
-[![Customize QR Code](demo_imgs/qr_scanner_image.jpeg)](demo_imgs/QR_scanner.mp4)
+[![Scan QR Code Feature](demo_imgs/qr_scanner_image.jpeg)](demo_imgs/QR_scanner.mp4)
 
-## Installation <a name="installation"></a>
+---
 
-Clone the repository to your local machine:
+## **Installation** ⚙️ <a name="installation"></a>
+
+Clone the repository and get started:
 
 ```bash
 git clone https://github.com/chetanr25/qr_code
@@ -68,6 +86,12 @@ flutter pub get
 flutter run
 ```
 
-## License
+---
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## **License** 📜 <a name="license"></a>
+
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more details.
+
+---
+
+✨ **Empowering QR code interactions with unmatched customization and ease!** ✨
