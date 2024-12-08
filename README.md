@@ -14,7 +14,7 @@
 
 ### **Download APK** 📥
 
-[<img src="https://camo.githubusercontent.com/2b0b605d77141fd0ff5f5aa8159f6121c4d4bd213d5ee2aba1753d678faaf28c/68747470733a2f2f692e6962622e636f2f71306d6463345a2f6765742d69742d6f6e2d6769746875622e706e67" width="350"/>](https://github.com/chetanr250/qr_code/raw/main/demo_imgs/app-release.apk)
+[<img src="https://camo.githubusercontent.com/2b0b605d77141fd0ff5f5aa8159f6121c4d4bd213d5ee2aba1753d678faaf28c/68747470733a2f2f692e6962622e636f2f71306d6463345a2f6765742d69742d6f6e2d6769746875622e706e67" width="350"/>](https://github.com/chetanr25/qr_code/raw/main/demo_imgs/app-release.apk)
 
 ---
 
@@ -58,6 +58,22 @@
 ---
 
 ## **Screenshots** 📸 <a name="screenshots"></a>
+
+
+
+<table align="center">
+  <tr>
+    <td align="center"><img src="https://github.com/user-attachments/assets/eedf57be-0f91-4a68-a1b4-3c42a3df8436" width="220"/><br/>QR code generator</td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/15d86734-d07d-40bb-b518-53d5e1f36dec" width="220"/><br/>Custom QR code generator</td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/f709a33e-7444-4361-b821-a1b51fb5c9f6" width="220"/><br/>QR Code generator</td>
+</tr>
+   
+<tr>
+   <td align="center"><img src="https://github.com/user-attachments/assets/9957c681-e354-4819-a49c-e38af120004a" width="220"/><br/>QR code generator - Gradient feature</td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/15befc1b-0d49-4190-826e-085526ab33a9" width="220"/><br/>Share QR code</td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/8c0fd191-f015-425f-81d4-9c20ce1c6277" width="220"/><br/>Save QR Code</td>
+  </tr>
+</table>
 
 ![Generate QR Code](demo_imgs/generate_qr.png)
 
