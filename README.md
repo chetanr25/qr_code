@@ -73,21 +73,34 @@
     <td align="center"><img src="https://github.com/user-attachments/assets/15befc1b-0d49-4190-826e-085526ab33a9" width="220"/><br/>Share QR code</td>
     <td align="center"><img src="https://github.com/user-attachments/assets/8c0fd191-f015-425f-81d4-9c20ce1c6277" width="220"/><br/>Save QR Code</td>
   </tr>
+
+<tr>
+   <td> 
+      
+   https://github.com/user-attachments/assets/6b9ead59-62c6-485b-af98-f32c96a85162 
+
+
+   <p align="center">Customise your QR</p>
+   </td>
+   
+   <td>
+      
+   https://github.com/user-attachments/assets/ac0f9cf5-3342-4b52-9278-36e11aab4d0a
+   
+
+   <p align="center">Custom Gradient effect options</p>
+   </td>
+
+   <td>
+      
+   https://github.com/user-attachments/assets/765d0975-e292-4054-ab78-56b28eaeb888
+
+
+   <p align="center">QR Code Scanner features</p>
+   
+   </td>
+</tr> 
 </table>
-
-![Generate QR Code](demo_imgs/generate_qr.png)
-
-### [**Gradient Background Feature Video** 🎥](demo_imgs/gradient_demo.mp4)
-
-[![Gradient Background Feature](demo_imgs/gradient_image.jpeg)](demo_imgs/gradient_demo.mp4)
-
-### [**Customize QR Code Video** 🎥](demo_imgs/custom_qr_video.mp4)
-
-[![Customize QR Code Feature](demo_imgs/custom_qr_image.png)](demo_imgs/custom_qr_video.mp4)
-
-### [**Scan QR Code Video** 🎥](demo_imgs/QR_scanner.mp4)
-
-[![Scan QR Code Feature](demo_imgs/qr_scanner_image.jpeg)](demo_imgs/QR_scanner.mp4)
 
 ---
 
