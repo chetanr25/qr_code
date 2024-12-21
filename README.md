@@ -8,7 +8,8 @@
    - [**QR Code Generator**](#qr-code-generator)
 3. [**Screenshots**](#screenshots)
 4. [**Installation**](#installation)
-5. [**License**](#license)
+5. [**How to Contribute**](#-how-to-contribute)
+6. [**License**](#license)
 
 ---
 
@@ -116,6 +117,13 @@ flutter run
 ```
 
 ---
+
+## 💻 How to Contribute
+
+We welcome contributions! If you'd like to contribute, please refer to our [Contributing Guide](CONTRIBUTING.md) for detailed instructions on how to report bugs, request features, and submit code.
+
+Thank you for your interest in contributing!
+
 
 ## **License** 📜 <a name="license"></a>
 
