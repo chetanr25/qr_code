@@ -15,7 +15,7 @@
 
 ### **Download APK** 📥
 
-[<img src="https://camo.githubusercontent.com/2b0b605d77141fd0ff5f5aa8159f6121c4d4bd213d5ee2aba1753d678faaf28c/68747470733a2f2f692e6962622e636f2f71306d6463345a2f6765742d69742d6f6e2d6769746875622e706e67" width="350"/>](https://github.com/chetanr25/qr_code/raw/main/demo_imgs/app-release.apk)
+[<img src="https://camo.githubusercontent.com/2b0b605d77141fd0ff5f5aa8159f6121c4d4bd213d5ee2aba1753d678faaf28c/68747470733a2f2f692e6962622e636f2f71306d6463345a2f6765742d69742d6f6e2d6769746875622e706e67" width="350"/>](https://github.com/chetanr25/qr_code/raw/8958f231f452aa21906a089306fcb5d11409926f/demo_imgs/app-release.apk)
 
 ---
 
