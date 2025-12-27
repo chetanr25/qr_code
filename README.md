@@ -41,7 +41,7 @@
 
 - **Lightning-fast scanning**
 - Supports a variety of QR code content: **URLs**, **UPI payments**, **SMS**, **mail**, **locations**, and **NFC**.
-- Includes **🔦 flash** and **camera flip** for convenience.
+- Includes **flash** and **camera flip** for convenience.
 - **Auto-redirects** to websites when scanning URLs.
 
 ---
