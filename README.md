@@ -8,7 +8,7 @@
    - [**QR Code Generator**](#qr-code-generator)
 3. [**Screenshots**](#screenshots)
 4. [**Installation**](#installation)
-5. [**How to Contribute**](#-how-to-contribute)
+5. [**How to Contribute**](#how-to-contribute)
 6. [**License**](#license)
 
 ---
@@ -37,12 +37,12 @@
 
 ## **Features**  <a name="features"></a>
 
-### **QR Code Scanner** 🔍 <a name="qr-code-scanner"></a>
+### **QR Code Scanner**  <a name="qr-code-scanner"></a>
 
 - **Lightning-fast scanning**
 - Supports a variety of QR code content: **URLs**, **UPI payments**, **SMS**, **mail**, **locations**, and **NFC**.
-- Includes **🔦 flash** and **🔄 camera flip** for convenience.
-- **🌐 Auto-redirects** to websites when scanning URLs.
+- Includes **🔦 flash** and **camera flip** for convenience.
+- **Auto-redirects** to websites when scanning URLs.
 
 ---
 
@@ -118,7 +118,7 @@ flutter run
 
 ---
 
-## 💻 How to Contribute
+## How to Contribute
 
 We welcome contributions! If you'd like to contribute, please refer to our [Contributing Guide](CONTRIBUTING.md) for detailed instructions on how to report bugs, request features, and submit code.
 
