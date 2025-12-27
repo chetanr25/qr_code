@@ -1,6 +1,6 @@
-# **QR Code App** 🚀
+# **QR Code App** 
 
-## **Table of Contents** 📖
+## **Table of Contents** 
 
 1. [**Overview**](#overview)
 2. [**Features**](#features)
@@ -13,52 +13,52 @@
 
 ---
 
-### **Download APK** 📥
+### **Download APK** 
 
 [<img src="https://camo.githubusercontent.com/2b0b605d77141fd0ff5f5aa8159f6121c4d4bd213d5ee2aba1753d678faaf28c/68747470733a2f2f692e6962622e636f2f71306d6463345a2f6765742d69742d6f6e2d6769746875622e706e67" width="350"/>](https://github.com/chetanr25/qr_code/raw/8958f231f452aa21906a089306fcb5d11409926f/demo_imgs/app-release.apk)
 
 ---
 
-## **Overview** 🖥️ <a name="overview"></a>
+## **Overview**  <a name="overview"></a>
 
 **QR Code App** is a powerful **Flutter application** that enables users to both **scan** and **generate QR codes** with ease. 
 
-### **Key Highlights** ✨:
+### **Key Highlights** :
 
-- **⚡ Fast and reliable scanning** for QR codes, supporting content like **URLs**, **UPI payments**, **SMS**, **emails**, **locations**, **NFC**, and **MMS**.
+- **Fast and reliable scanning** for QR codes, supporting content like **URLs**, **UPI payments**, **SMS**, **emails**, **locations**, **NFC**, and **MMS**.
 - A versatile **QR Code Generator** with options for:
-  - 🖌️ **Custom sizes**
-  - 🌈 **Gradient backgrounds**
-  - 🔲 **Shape modifications** (square or circle)
-  - 🎨 **Color adjustments**
-  - 🖼️ **Image embedding**
+  - **Custom sizes**
+  - **Gradient backgrounds**
+  - **Shape modifications** (square or circle)
+  - **Color adjustments**
+  - **Image embedding**
 
 ---
 
-## **Features** 🛠️ <a name="features"></a>
+## **Features**  <a name="features"></a>
 
 ### **QR Code Scanner** 🔍 <a name="qr-code-scanner"></a>
 
-- **⚡ Lightning-fast scanning**
-- Supports a variety of QR code content: **🌐 URLs**, **💳 UPI payments**, **✉️ SMS**, **📧 mail**, **📍 locations**, and **📡 NFC**.
+- **Lightning-fast scanning**
+- Supports a variety of QR code content: **URLs**, **UPI payments**, **SMS**, **mail**, **locations**, and **NFC**.
 - Includes **🔦 flash** and **🔄 camera flip** for convenience.
 - **🌐 Auto-redirects** to websites when scanning URLs.
 
 ---
 
-### **QR Code Generator** 🖼️ <a name="qr-code-generator"></a>
+### **QR Code Generator** <a name="qr-code-generator"></a>
 
 - **Generate QR codes** for any text type.
-- 📏 Adjust QR code **size** dynamically.
-- 🌈 Choose from various **gradient backgrounds**.
-- 🔲 Customize QR code **shapes** (square or circle) and **colors**.
-- 🖼️ Embed **images** into QR codes.
-- 💾 **Save** QR codes to your gallery with or without gradient backgrounds.
-- 🔗 **Share QR codes** directly to other apps.
+- Adjust QR code **size** dynamically.
+- Choose from various **gradient backgrounds**.
+- Customize QR code **shapes** (square or circle) and **colors**.
+- Embed **images** into QR codes.
+- **Save** QR codes to your gallery with or without gradient backgrounds.
+- **Share QR codes** directly to other apps.
 
 ---
 
-## **Screenshots** 📸 <a name="screenshots"></a>
+## **Screenshots**  <a name="screenshots"></a>
 
 
 
@@ -125,7 +125,7 @@ We welcome contributions! If you'd like to contribute, please refer to our [Cont
 Thank you for your interest in contributing!
 
 
-## **License** 📜 <a name="license"></a>
+## **License**  <a name="license"></a>
 
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more details.
 
