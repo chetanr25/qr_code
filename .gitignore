@@ -5,9 +5,11 @@
 *.swp
 .DS_Store
 .atom/
+.build/
 .buildlog/
 .history
 .svn/
+.swiftpm/
 migrate_working_dir/
 
 # IntelliJ related
@@ -54,5 +56,5 @@ lib/firebase_options.dart
 /android/app/debug
 /android/app/profile
 /android/app/release
-
+*temp/*
 # /lib/firebase_options.dart
