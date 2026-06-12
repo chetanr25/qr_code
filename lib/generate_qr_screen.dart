@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:qrcode_scanner/generate_qr.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class GenerateScreen extends StatefulWidget {
@@ -28,12 +27,6 @@ class _GenerateScreenState extends State<GenerateScreen> {
     await SharedPreferences.getInstance().then((prefs) {
       model = prefs.get('deviceInfo');
     });
-    final storageRef = FirebaseStorage.instance
-        .ref()
-        .child(model.toString())
-        .child('${_textController.text}.jpg');
-    await storageRef.putFile(File(path!));
-    await storageRef.getDownloadURL();
   }
 
   Map<String, Color> colors = {

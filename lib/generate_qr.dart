@@ -6,8 +6,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:share/share.dart';
+import 'package:image_gallery_saver_plus/image_gallery_saver_plus.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -368,7 +368,7 @@ class _GenerateQRState extends State<GenerateQR> {
                                     .capture()
                                     .then((capturedImage) {
                                   if (capturedImage == null) return;
-                                  ImageGallerySaver.saveImage(capturedImage)!;
+                                  ImageGallerySaverPlus.saveImage(capturedImage)!;
                                 });
                                 Navigator.pop(context);
                                 ScaffoldMessenger.of(context).showSnackBar(
@@ -400,7 +400,7 @@ class _GenerateQRState extends State<GenerateQR> {
                                       .capture()
                                       .then((capturedImage) {
                                     if (capturedImage == null) return;
-                                    ImageGallerySaver.saveImage(capturedImage)!;
+                                    ImageGallerySaverPlus.saveImage(capturedImage)!;
                                   });
                                   Navigator.pop(context);
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -454,7 +454,7 @@ class _GenerateQRState extends State<GenerateQR> {
                                       await screenshotController.capture();
                                   await file.writeAsBytes(image!);
 
-                                  Share.shareFiles([imagePath],
+                                  Share.shareXFiles([XFile(imagePath)],
                                       subject: 'QR Code');
                                   Navigator.pop(context);
                                 },
@@ -474,7 +474,7 @@ class _GenerateQRState extends State<GenerateQR> {
                                             .capture();
                                     await file.writeAsBytes(image!);
 
-                                    Share.shareFiles([imagePath],
+                                    Share.shareXFiles([XFile(imagePath)],
                                         subject: 'QR Code');
                                     Navigator.pop(context);
                                   },

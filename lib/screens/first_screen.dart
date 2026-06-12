@@ -3,6 +3,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:qrcode_scanner/device_info.dart';
+// import 'package:qrcode_scanner/device_info.dart';
+// import 'package:device_info_plus/device_info_plus.dart';
 import 'package:qrcode_scanner/generate_qr_screen.dart';
 import 'package:qrcode_scanner/qr_scanner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
