@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Qrcode Scanner</string>
+	<string>Qrly</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -27,13 +27,13 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>your usage description here</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>your usage description here</string>
+	<string>Qrly uses the camera to scan QR codes.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Qrly accesses contacts to pre-fill UPI payments and contact QR codes.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Allow QR code to save in your gallery</string>
+	<string>Qrly saves generated QR codes to your photo library.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Allow QR code to get image for embedded QR</string>
+	<string>Qrly reads images to scan QR codes and embed logos.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

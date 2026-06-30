@@ -1,30 +1,61 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:qrcode_scanner/main.dart';
+import 'package:qrcode_scanner/core/qr_builders.dart';
+import 'package:qrcode_scanner/core/qr_kind.dart';
+import 'package:qrcode_scanner/core/upi.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  group('QR payload builders', () {
+    test('UPI builds a valid deep link', () {
+      final upi = QrBuilders.upi(
+          vpa: 'alice@bank', name: 'Alice', amount: '100', note: 'lunch');
+      expect(upi, startsWith('upi://pay?'));
+      expect(upi, contains('pa=alice%40bank'));
+      expect(upi, contains('am=100'));
+      expect(upi, contains('cu=INR'));
+    });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    test('Wi-Fi escapes special characters', () {
+      final wifi = QrBuilders.wifi(ssid: 'My;Net', password: 'p@ss');
+      expect(wifi, startsWith('WIFI:T:WPA;'));
+      expect(wifi, contains(r'S:My\;Net;'));
+    });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    test('vCard contains required fields', () {
+      final v = QrBuilders.vcard(name: 'Bob', phone: '123', email: 'b@x.com');
+      expect(v, contains('BEGIN:VCARD'));
+      expect(v, contains('FN:Bob'));
+      expect(v, contains('TEL;TYPE=CELL:123'));
+      expect(v, contains('END:VCARD'));
+    });
+  });
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  group('UPI VPA format', () {
+    test('rejects a bare phone number', () {
+      expect(Upi.isValidVpa('9876543210'), isFalse);
+    });
+
+    test('accepts handle@psp', () {
+      expect(Upi.isValidVpa('9876543210@ybl'), isTrue);
+      expect(Upi.isValidVpa('alice.b@okhdfcbank'), isTrue);
+    });
+
+    test('rejects malformed ids', () {
+      expect(Upi.isValidVpa('alice@'), isFalse);
+      expect(Upi.isValidVpa('@bank'), isFalse);
+      expect(Upi.isValidVpa('a@b@c'), isFalse);
+    });
+  });
+
+  group('Kind detection', () {
+    test('detects common schemes', () {
+      expect(detectKind('https://example.com'), QrKind.url);
+      expect(detectKind('upi://pay?pa=a@b'), QrKind.upi);
+      expect(detectKind('WIFI:T:WPA;S:net;P:pw;;'), QrKind.wifi);
+      expect(detectKind('tel:+10000'), QrKind.phone);
+      expect(detectKind('BEGIN:VCARD'), QrKind.contact);
+      expect(detectKind('hello world'), QrKind.text);
+      expect(detectKind('example.com'), QrKind.url);
+    });
   });
 }

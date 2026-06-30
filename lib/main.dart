@@ -1,24 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:qrcode_scanner/config/theme.dart';
-import 'package:qrcode_scanner/screens/first_screen.dart';
+
+import 'core/app_prefs.dart';
+import 'core/app_theme.dart';
+import 'core/history_store.dart';
+import 'features/home/home_shell.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  runApp(const MyApp());
+  await AppPrefs.instance.init();
+  await HistoryStore.instance.init();
+  runApp(const QrlyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class QrlyApp extends StatelessWidget {
+  const QrlyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      home: const FirstScreen(),
+    return ValueListenableBuilder<ThemeMode>(
+      valueListenable: AppPrefs.instance.themeMode,
+      builder: (context, mode, _) {
+        return MaterialApp(
+          title: 'Qrly',
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.light(),
+          darkTheme: AppTheme.dark(),
+          themeMode: mode,
+          home: const HomeShell(),
+        );
+      },
     );
   }
 }
