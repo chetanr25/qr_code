@@ -12,21 +12,13 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
+      appBar: AppBar(title: const Text('Settings')),
       body: AuroraBackground(
         child: SafeArea(
+          top: false,
           child: ListView(
-            padding: const EdgeInsets.fromLTRB(20, 18, 20, 120),
+            padding: const EdgeInsets.fromLTRB(20, 8, 20, 40),
             children: [
-              Text(
-                'Settings',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w800,
-                  letterSpacing: -1,
-                  color: Theme.of(context).colorScheme.onSurface,
-                ),
-              ),
-              const SizedBox(height: 24),
               SectionLabel('Appearance', icon: Icons.dark_mode_rounded),
               GlassCard(
                 padding: const EdgeInsets.all(8),
@@ -53,11 +45,7 @@ class SettingsScreen extends StatelessWidget {
                   children: [
                     _aboutHeader(context),
                     const Divider(height: 28),
-                    _linkTile(context, Icons.code_rounded, 'Source on GitHub',
-                        'github.com/chetanr25/qr_code',
-                        'https://github.com/chetanr25/qr_code'),
-                    _linkTile(context, Icons.star_outline_rounded,
-                        'Rate the app', 'Leave a review', null),
+                    _contactTile(context),
                   ],
                 ),
               ),
@@ -134,18 +122,17 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Widget _linkTile(BuildContext context, IconData icon, String title,
-      String subtitle, String? url) {
+  Widget _contactTile(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: Icon(icon),
-      title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
-      subtitle: Text(subtitle),
+      leading: const Icon(Icons.alternate_email_rounded),
+      title: const Text('Contact developer',
+          style: TextStyle(fontWeight: FontWeight.w600)),
       trailing: const Icon(Icons.chevron_right_rounded),
-      onTap: url == null
-          ? null
-          : () => launchUrl(Uri.parse(url),
-              mode: LaunchMode.externalApplication),
+      onTap: () => launchUrl(
+        Uri.parse('https://chetanr25.in'),
+        mode: LaunchMode.externalApplication,
+      ),
     );
   }
 }

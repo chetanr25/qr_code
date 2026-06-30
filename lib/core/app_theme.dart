@@ -30,6 +30,8 @@ class AppTheme {
       splashFactory: InkSparkle.splashFactory,
       appBarTheme: AppBarTheme(
         backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+        foregroundColor: scheme.onSurface,
         elevation: 0,
         scrolledUnderElevation: 0,
         centerTitle: false,
@@ -39,6 +41,13 @@ class AppTheme {
           fontWeight: FontWeight.w800,
           letterSpacing: -0.5,
         ),
+        iconTheme: IconThemeData(color: scheme.onSurface),
+      ),
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: {
+          TargetPlatform.android: FadeForwardsPageTransitionsBuilder(),
+          TargetPlatform.iOS: FadeForwardsPageTransitionsBuilder(),
+        },
       ),
       cardTheme: CardThemeData(
         elevation: 0,

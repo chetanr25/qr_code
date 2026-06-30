@@ -104,6 +104,11 @@ class ResultSheet extends StatelessWidget {
           _Primary('Pay with UPI app', Icons.account_balance_wallet_rounded,
               () => _launch(context, value)),
         ];
+      case QrKind.whatsapp:
+        return [
+          _Primary('Open in WhatsApp', Icons.chat_rounded,
+              () => _launch(context, value)),
+        ];
       case QrKind.phone:
         return [
           _Primary('Call', Icons.call_rounded,

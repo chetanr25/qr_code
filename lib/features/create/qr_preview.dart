@@ -31,6 +31,9 @@ class _QrPreviewState extends State<QrPreview> {
   int _shape = 0; // 0 square, 1 circle, 2 rounded -> see mapping
   String _logoPath = '';
   bool _saved = false;
+  bool _showLabel = true;
+  late final TextEditingController _labelCtrl =
+      TextEditingController(text: qrCaption(widget.kind, widget.data));
 
   static const _fgColors = [
     Colors.black,
@@ -48,6 +51,12 @@ class _QrPreviewState extends State<QrPreview> {
     HistoryStore.instance.add(widget.data, widget.kind, 'create');
   }
 
+  @override
+  void dispose() {
+    _labelCtrl.dispose();
+    super.dispose();
+  }
+
   QrEyeShape get _eyeShape =>
       _shape == 1 ? QrEyeShape.circle : QrEyeShape.square;
   QrDataModuleShape get _moduleShape =>
@@ -63,7 +72,8 @@ class _QrPreviewState extends State<QrPreview> {
     final controller = withBackground ? _cardShot : _qrShot;
     final bytes = await controller.capture();
     if (bytes == null) return;
-    await ImageGallerySaverPlus.saveImage(bytes, name: 'qrly_${DateTime.now().millisecondsSinceEpoch}');
+    await ImageGallerySaverPlus.saveImage(bytes,
+        name: 'qrly_${DateTime.now().millisecondsSinceEpoch}');
     setState(() => _saved = true);
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
@@ -76,7 +86,8 @@ class _QrPreviewState extends State<QrPreview> {
     final bytes = await controller.capture();
     if (bytes == null) return;
     final dir = await getTemporaryDirectory();
-    final path = '${dir.path}/qrly_${DateTime.now().millisecondsSinceEpoch}.png';
+    final path =
+        '${dir.path}/qrly_${DateTime.now().millisecondsSinceEpoch}.png';
     await File(path).writeAsBytes(bytes);
     await Share.shareXFiles([XFile(path)], subject: 'QR Code');
   }
@@ -94,7 +105,8 @@ class _QrPreviewState extends State<QrPreview> {
           ),
           IconButton(
             onPressed: () => _chooseFormatSheet(share: false),
-            icon: Icon(_saved ? Icons.check_circle_rounded : Icons.download_rounded),
+            icon: Icon(
+                _saved ? Icons.check_circle_rounded : Icons.download_rounded),
           ),
         ],
       ),
@@ -114,6 +126,9 @@ class _QrPreviewState extends State<QrPreview> {
               const SizedBox(height: 20),
               SectionLabel('Style', icon: Icons.category_rounded),
               _shapeChips(),
+              const SizedBox(height: 20),
+              SectionLabel('Label', icon: Icons.label_rounded),
+              _labelToggle(),
               const SizedBox(height: 20),
               SectionLabel('Logo', icon: Icons.image_rounded),
               _logoRow(),
@@ -136,7 +151,9 @@ class _QrPreviewState extends State<QrPreview> {
           borderRadius: BorderRadius.circular(28),
           boxShadow: [
             BoxShadow(
-              color: AppGradients.colorsFor(_gradient).first.withValues(alpha: 0.5),
+              color: AppGradients.colorsFor(_gradient)
+                  .first
+                  .withValues(alpha: 0.5),
               blurRadius: 30,
               offset: const Offset(0, 12),
             ),
@@ -174,22 +191,36 @@ class _QrPreviewState extends State<QrPreview> {
                 ),
               ),
             ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(widget.kind.icon, color: Colors.white, size: 16),
-                const SizedBox(width: 6),
-                Text(
-                  widget.kind.label,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 14,
-                  ),
+            if (_showLabel && _labelCtrl.text.trim().isNotEmpty) ...[
+              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(widget.kind.icon, color: Colors.white, size: 17),
+                    const SizedBox(width: 7),
+                    Flexible(
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          _labelCtrl.text.trim(),
+                          maxLines: 1,
+                          softWrap: false,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ],
         ),
       ),
@@ -290,6 +321,42 @@ class _QrPreviewState extends State<QrPreview> {
     );
   }
 
+  Widget _labelToggle() {
+    return GlassCard(
+      padding: const EdgeInsets.fromLTRB(4, 2, 4, 12),
+      child: Column(
+        children: [
+          SwitchListTile(
+            contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+            title: const Text('Show label on QR',
+                style: TextStyle(fontWeight: FontWeight.w600)),
+            value: _showLabel,
+            onChanged: (v) => setState(() => _showLabel = v),
+          ),
+          if (_showLabel)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: TextField(
+                controller: _labelCtrl,
+                onChanged: (_) => setState(() {}),
+                textCapitalization: TextCapitalization.sentences,
+                decoration: InputDecoration(
+                  labelText: 'Label text',
+                  suffixIcon: IconButton(
+                    tooltip: 'Reset to default',
+                    icon: const Icon(Icons.restart_alt_rounded, size: 20),
+                    onPressed: () => setState(() {
+                      _labelCtrl.text = qrCaption(widget.kind, widget.data);
+                    }),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
   Widget _logoRow() {
     return Row(
       children: [
@@ -302,8 +369,8 @@ class _QrPreviewState extends State<QrPreview> {
             label: Text(_logoPath.isEmpty ? 'Embed a logo' : 'Logo added'),
             style: OutlinedButton.styleFrom(
               minimumSize: const Size.fromHeight(50),
-              shape:
-                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14)),
             ),
           ),
         ),
@@ -333,7 +400,8 @@ class _QrPreviewState extends State<QrPreview> {
             children: [
               Text(
                 share ? 'Share as' : 'Save as',
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
               ),
               const SizedBox(height: 18),
               ListTile(

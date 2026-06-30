@@ -40,10 +40,39 @@ void main() {
       expect(Upi.isValidVpa('alice.b@okhdfcbank'), isTrue);
     });
 
+    test('accepts psp handles ending in digits (e.g. kotak811)', () {
+      expect(Upi.isValidVpa('john@kotak811'), isTrue);
+      expect(Upi.isValidVpa('9876543210@axl'), isTrue);
+    });
+
     test('rejects malformed ids', () {
       expect(Upi.isValidVpa('alice@'), isFalse);
       expect(Upi.isValidVpa('@bank'), isFalse);
       expect(Upi.isValidVpa('a@b@c'), isFalse);
+    });
+  });
+
+  group('WhatsApp', () {
+    test('builds wa.me link with country code, no plus/zeros', () {
+      final w = QrBuilders.whatsapp(
+          countryCode: '+91', phone: '098765 43210', message: 'hi there');
+      expect(w, startsWith('https://wa.me/919876543210'));
+      expect(w, contains('text=hi%20there'));
+    });
+
+    test('detects and captions a wa.me link', () {
+      expect(detectKind('https://wa.me/919876543210'), QrKind.whatsapp);
+      expect(qrCaption(QrKind.whatsapp, 'https://wa.me/919876543210'),
+          '+919876543210');
+    });
+  });
+
+  group('Captions', () {
+    test('url strips scheme and www', () {
+      expect(qrCaption(QrKind.url, 'https://www.example.com/'), 'example.com');
+    });
+    test('wifi shows ssid', () {
+      expect(qrCaption(QrKind.wifi, 'WIFI:T:WPA;S:HomeNet;P:pw;;'), 'HomeNet');
     });
   });
 

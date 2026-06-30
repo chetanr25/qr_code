@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 
 import '../../core/qr_builders.dart';
@@ -19,6 +20,12 @@ class _CreateFormState extends State<CreateForm> {
   final _formKey = GlobalKey<FormState>();
   final Map<String, TextEditingController> _c = {};
 
+  // Common UPI handles (after the @) shown as quick-fill chips.
+  static const _upiHandles = [
+    '@oksbi', '@okhdfcbank', '@okicici', '@okaxis', '@ybl', '@paytm', //
+    '@apl', '@ibl', '@axl', '@kotak811', '@yapl', '@upi',
+  ];
+
   // type-specific state
   String _wifiEnc = 'WPA';
   bool _wifiHidden = false;
@@ -27,6 +34,12 @@ class _CreateFormState extends State<CreateForm> {
 
   TextEditingController ctrl(String key) =>
       _c.putIfAbsent(key, () => TextEditingController());
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.kind == QrKind.whatsapp) ctrl('cc').text = '+91';
+  }
 
   @override
   void dispose() {
@@ -88,6 +101,14 @@ class _CreateFormState extends State<CreateForm> {
           name: ctrl('payee').text.trim(),
           amount: ctrl('amount').text.trim(),
           note: ctrl('note').text.trim(),
+        );
+      case QrKind.whatsapp:
+        final phone = ctrl('phone').text.trim();
+        if (phone.isEmpty) return null;
+        return QrBuilders.whatsapp(
+          countryCode: ctrl('cc').text.trim(),
+          phone: phone,
+          message: ctrl('msg').text.trim(),
         );
       case QrKind.wifi:
         final ssid = ctrl('ssid').text.trim();
@@ -225,6 +246,33 @@ class _CreateFormState extends State<CreateForm> {
         return [_field('text', 'Text', maxLines: 5)];
       case QrKind.upi:
         return _upiFields();
+      case QrKind.whatsapp:
+        return [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 92,
+                child: _field('cc', 'Code',
+                    keyboard: TextInputType.phone, paste: false),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: _field('phone', 'Phone number',
+                    hint: 'without leading 0',
+                    keyboard: TextInputType.phone),
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          _contactButton(
+              'Pick from contacts', () => _pickContact(phoneKey: 'phone')),
+          const SizedBox(height: 14),
+          _field('msg', 'Message (optional)', maxLines: 3),
+          const SizedBox(height: 10),
+          _hintBox(
+              'Opens a WhatsApp chat with a pre-filled message. Country code defaults to +91 (India) — change it for other countries.'),
+        ];
       case QrKind.wifi:
         return [
           _field('ssid', 'Network name (SSID)'),
@@ -338,10 +386,20 @@ class _CreateFormState extends State<CreateForm> {
       ),
       const SizedBox(height: 12),
       _upiFormatPill(hasInput, ok),
-      const SizedBox(height: 18),
-      _contactButton(
-          'Autofill payee name from contact', () => _pickContact()),
-      const SizedBox(height: 14),
+      const SizedBox(height: 16),
+      const SectionLabel('Quick bank handles', icon: Icons.alternate_email_rounded),
+      Wrap(
+        spacing: 8,
+        runSpacing: 8,
+        children: [
+          for (final h in _upiHandles)
+            ActionChip(
+              label: Text(h),
+              onPressed: () => _applyUpiHandle(h),
+            ),
+        ],
+      ),
+      const SizedBox(height: 16),
       _field('payee', 'Payee name (optional)'),
       const SizedBox(height: 14),
       _field('amount', 'Amount ₹ (optional)',
@@ -350,8 +408,22 @@ class _CreateFormState extends State<CreateForm> {
       _field('note', 'Note (optional)'),
       const SizedBox(height: 10),
       _hintBox(
-          'Enter the payee\'s real UPI ID — the name@bank they see in their UPI app — or scan their UPI QR from the Scan tab. A phone number on its own is not a UPI ID.'),
+          'Enter the payee\'s real UPI ID — the name@bank they see in their UPI app — or scan their UPI QR from the Scan tab. Tap a handle to set the part after @.'),
     ];
+  }
+
+  /// Sets the bank handle on the UPI field, replacing anything after an
+  /// existing @ (does not append a second @).
+  void _applyUpiHandle(String handle) {
+    final c = ctrl('vpa');
+    final at = c.text.indexOf('@');
+    final base = at >= 0 ? c.text.substring(0, at) : c.text;
+    final next = '$base$handle';
+    c.value = TextEditingValue(
+      text: next,
+      selection: TextSelection.collapsed(offset: next.length),
+    );
+    setState(() {});
   }
 
   Widget _upiFormatPill(bool hasInput, bool ok) {
@@ -400,6 +472,7 @@ class _CreateFormState extends State<CreateForm> {
     bool obscure = false,
     TextInputType? keyboard,
     ValueChanged<String>? onChanged,
+    bool paste = true,
   }) {
     return TextFormField(
       controller: ctrl(key),
@@ -407,8 +480,31 @@ class _CreateFormState extends State<CreateForm> {
       obscureText: obscure,
       keyboardType: keyboard,
       onChanged: onChanged,
-      decoration: InputDecoration(labelText: label, hintText: hint),
+      decoration: InputDecoration(
+        labelText: label,
+        hintText: hint,
+        suffixIcon: paste
+            ? IconButton(
+                tooltip: 'Paste',
+                icon: const Icon(Icons.content_paste_rounded, size: 20),
+                onPressed: () => _pasteInto(key, onChanged),
+              )
+            : null,
+      ),
     );
+  }
+
+  Future<void> _pasteInto(String key, ValueChanged<String>? onChanged) async {
+    final data = await Clipboard.getData(Clipboard.kTextPlain);
+    final text = data?.text;
+    if (text == null || text.isEmpty) return;
+    final c = ctrl(key);
+    c.value = TextEditingValue(
+      text: text,
+      selection: TextSelection.collapsed(offset: text.length),
+    );
+    onChanged?.call(text);
+    setState(() {});
   }
 
   Widget _contactButton(String label, VoidCallback onTap) {

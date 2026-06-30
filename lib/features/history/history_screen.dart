@@ -28,37 +28,27 @@ class _HistoryScreenState extends State<HistoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
+      appBar: AppBar(
+        title: const Text('History'),
+        actions: [
+          ValueListenableBuilder<List<QrEntry>>(
+            valueListenable: HistoryStore.instance.entries,
+            builder: (context, list, _) => list.isEmpty
+                ? const SizedBox()
+                : IconButton(
+                    tooltip: 'Clear all',
+                    onPressed: _confirmClear,
+                    icon: const Icon(Icons.delete_sweep_rounded),
+                  ),
+          ),
+        ],
+      ),
       body: AuroraBackground(
         child: SafeArea(
+          top: false,
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 18, 20, 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'History',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: -1,
-                        color: Theme.of(context).colorScheme.onSurface,
-                      ),
-                    ),
-                    ValueListenableBuilder<List<QrEntry>>(
-                      valueListenable: HistoryStore.instance.entries,
-                      builder: (context, list, _) => list.isEmpty
-                          ? const SizedBox()
-                          : IconButton(
-                              tooltip: 'Clear all',
-                              onPressed: _confirmClear,
-                              icon: const Icon(Icons.delete_sweep_rounded),
-                            ),
-                    ),
-                  ],
-                ),
-              ),
+              const SizedBox(height: 8),
               _filterBar(),
               Expanded(
                 child: ValueListenableBuilder<List<QrEntry>>(

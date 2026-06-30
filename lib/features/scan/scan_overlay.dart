@@ -75,16 +75,6 @@ class _ScanOverlayState extends State<ScanOverlay>
                   },
                 ),
               ),
-              Positioned(
-                left: 0,
-                right: 0,
-                top: rect.bottom + 28,
-                child: const Text(
-                  'Point camera at a QR code',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white70, fontSize: 14),
-                ),
-              ),
             ],
           ),
         );

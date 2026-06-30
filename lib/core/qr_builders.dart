@@ -65,6 +65,22 @@ class QrBuilders {
 
   static String phone(String number) => 'tel:$number';
 
+  /// WhatsApp click-to-chat: `https://wa.me/<countrycode><number>?text=<msg>`.
+  /// Both [countryCode] and [phone] are reduced to digits (no +, spaces, 0s).
+  static String whatsapp({
+    required String countryCode,
+    required String phone,
+    String? message,
+  }) {
+    final cc = countryCode.replaceAll(RegExp(r'\D'), '');
+    var p = phone.replaceAll(RegExp(r'\D'), '');
+    p = p.replaceFirst(RegExp(r'^0+'), ''); // drop leading national-trunk zeros
+    final base = 'https://wa.me/$cc$p';
+    return (message == null || message.isEmpty)
+        ? base
+        : '$base?text=${Uri.encodeComponent(message)}';
+  }
+
   static String sms({required String number, String? message}) =>
       (message == null || message.isEmpty)
           ? 'smsto:$number'

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../scan/scan_screen.dart';
 import '../create/create_home.dart';
-import '../history/history_screen.dart';
-import '../settings/settings_screen.dart';
+import 'app_drawer.dart';
 
 class HomeShell extends StatefulWidget {
   const HomeShell({super.key});
@@ -13,31 +12,31 @@ class HomeShell extends StatefulWidget {
 }
 
 class _HomeShellState extends State<HomeShell> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   int _index = 0;
 
   static const _tabs = [
     _TabDef('Scan', Icons.qr_code_scanner_rounded),
     _TabDef('Create', Icons.add_box_rounded),
-    _TabDef('History', Icons.history_rounded),
-    _TabDef('Settings', Icons.settings_rounded),
   ];
 
-  final _screens = const [
-    ScanScreen(),
-    CreateHome(),
-    HistoryScreen(),
-    SettingsScreen(),
-  ];
+  void _openDrawer() => _scaffoldKey.currentState?.openDrawer();
 
   @override
   Widget build(BuildContext context) {
+    final screens = [
+      ScanScreen(onMenu: _openDrawer),
+      CreateHome(onMenu: _openDrawer),
+    ];
     return Scaffold(
+      key: _scaffoldKey,
       extendBody: true,
+      drawer: const AppDrawer(),
       body: AnimatedSwitcher(
         duration: const Duration(milliseconds: 250),
         child: KeyedSubtree(
           key: ValueKey(_index),
-          child: _screens[_index],
+          child: screens[_index],
         ),
       ),
       bottomNavigationBar: _GlassNavBar(
@@ -128,21 +127,21 @@ class _NavItem extends StatelessWidget {
               : Colors.transparent,
           borderRadius: BorderRadius.circular(22),
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               tab.icon,
-              size: 24,
+              size: 22,
               color: selected
                   ? scheme.primary
                   : scheme.onSurface.withValues(alpha: 0.55),
             ),
-            const SizedBox(height: 3),
+            const SizedBox(width: 8),
             Text(
               tab.label,
               style: TextStyle(
-                fontSize: 11,
+                fontSize: 13,
                 fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
                 color: selected
                     ? scheme.primary
