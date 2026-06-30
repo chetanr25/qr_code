@@ -58,8 +58,7 @@ class _CreateFormState extends State<CreateForm> {
     if (picked == null) return;
     final contact = await FlutterContacts.getContact(picked.id);
     if (contact == null) return;
-    final phone =
-        contact.phones.isNotEmpty ? contact.phones.first.number : '';
+    final phone = contact.phones.isNotEmpty ? contact.phones.first.number : '';
     setState(() {
       if (phoneKey != null) {
         ctrl(phoneKey).text = phone.replaceAll(RegExp(r'\s'), '');
@@ -214,7 +213,10 @@ class _CreateFormState extends State<CreateForm> {
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [widget.kind.color, widget.kind.color.withValues(alpha: 0.6)],
+              colors: [
+                widget.kind.color,
+                widget.kind.color.withValues(alpha: 0.6)
+              ],
             ),
             borderRadius: BorderRadius.circular(18),
           ),
@@ -226,8 +228,10 @@ class _CreateFormState extends State<CreateForm> {
             'Enter details for your ${widget.kind.label.toLowerCase()} QR code',
             style: TextStyle(
               fontSize: 14,
-              color:
-                  Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
+              color: Theme.of(context)
+                  .colorScheme
+                  .onSurface
+                  .withValues(alpha: 0.7),
             ),
           ),
         ),
@@ -239,8 +243,8 @@ class _CreateFormState extends State<CreateForm> {
     switch (widget.kind) {
       case QrKind.url:
         return [
-          _field('url', 'Website URL', hint: 'example.com',
-              keyboard: TextInputType.url)
+          _field('url', 'Website URL',
+              hint: 'example.com', keyboard: TextInputType.url)
         ];
       case QrKind.text:
         return [_field('text', 'Text', maxLines: 5)];
@@ -259,8 +263,7 @@ class _CreateFormState extends State<CreateForm> {
               const SizedBox(width: 12),
               Expanded(
                 child: _field('phone', 'Phone number',
-                    hint: 'without leading 0',
-                    keyboard: TextInputType.phone),
+                    hint: 'without leading 0', keyboard: TextInputType.phone),
               ),
             ],
           ),
@@ -271,14 +274,13 @@ class _CreateFormState extends State<CreateForm> {
           _field('msg', 'Message (optional)', maxLines: 3),
           const SizedBox(height: 10),
           _hintBox(
-              'Opens a WhatsApp chat with a pre-filled message. Country code defaults to +91 (India) — change it for other countries.'),
+              'Opens a WhatsApp chat with a pre-filled message. Country code defaults to +91 (India) change it for other countries.'),
         ];
       case QrKind.wifi:
         return [
           _field('ssid', 'Network name (SSID)'),
           const SizedBox(height: 14),
-          if (_wifiEnc != 'nopass')
-            _field('pass', 'Password', obscure: true),
+          if (_wifiEnc != 'nopass') _field('pass', 'Password', obscure: true),
           if (_wifiEnc != 'nopass') const SizedBox(height: 14),
           SectionLabel('Encryption', icon: Icons.lock_rounded),
           Wrap(
@@ -318,8 +320,7 @@ class _CreateFormState extends State<CreateForm> {
         ];
       case QrKind.email:
         return [
-          _field('to', 'Recipient email',
-              keyboard: TextInputType.emailAddress),
+          _field('to', 'Recipient email', keyboard: TextInputType.emailAddress),
           const SizedBox(height: 14),
           _field('subject', 'Subject (optional)'),
           const SizedBox(height: 14),
@@ -327,15 +328,15 @@ class _CreateFormState extends State<CreateForm> {
         ];
       case QrKind.phone:
         return [
-          _contactButton('Pick from contacts',
-              () => _pickContact(phoneKey: 'phone')),
+          _contactButton(
+              'Pick from contacts', () => _pickContact(phoneKey: 'phone')),
           const SizedBox(height: 14),
           _field('phone', 'Phone number', keyboard: TextInputType.phone),
         ];
       case QrKind.sms:
         return [
-          _contactButton('Pick from contacts',
-              () => _pickContact(phoneKey: 'phone')),
+          _contactButton(
+              'Pick from contacts', () => _pickContact(phoneKey: 'phone')),
           const SizedBox(height: 14),
           _field('phone', 'Phone number', keyboard: TextInputType.phone),
           const SizedBox(height: 14),
@@ -344,12 +345,12 @@ class _CreateFormState extends State<CreateForm> {
       case QrKind.geo:
         return [
           _field('lat', 'Latitude',
-              keyboard:
-                  const TextInputType.numberWithOptions(decimal: true, signed: true)),
+              keyboard: const TextInputType.numberWithOptions(
+                  decimal: true, signed: true)),
           const SizedBox(height: 14),
           _field('lng', 'Longitude',
-              keyboard:
-                  const TextInputType.numberWithOptions(decimal: true, signed: true)),
+              keyboard: const TextInputType.numberWithOptions(
+                  decimal: true, signed: true)),
           const SizedBox(height: 14),
           _field('label', 'Label (optional)'),
         ];
@@ -361,12 +362,15 @@ class _CreateFormState extends State<CreateForm> {
           const SizedBox(height: 14),
           _field('edesc', 'Description (optional)', maxLines: 3),
           const SizedBox(height: 14),
-          _dateRow('Starts', _eventStart, (d) => setState(() {
-                _eventStart = d;
-                if (_eventEnd.isBefore(d)) {
-                  _eventEnd = d.add(const Duration(hours: 1));
-                }
-              })),
+          _dateRow(
+              'Starts',
+              _eventStart,
+              (d) => setState(() {
+                    _eventStart = d;
+                    if (_eventEnd.isBefore(d)) {
+                      _eventEnd = d.add(const Duration(hours: 1));
+                    }
+                  })),
           _dateRow('Ends', _eventEnd, (d) => setState(() => _eventEnd = d)),
         ];
     }
@@ -387,7 +391,8 @@ class _CreateFormState extends State<CreateForm> {
       const SizedBox(height: 12),
       _upiFormatPill(hasInput, ok),
       const SizedBox(height: 16),
-      const SectionLabel('Quick bank handles', icon: Icons.alternate_email_rounded),
+      const SectionLabel('Quick bank handles',
+          icon: Icons.alternate_email_rounded),
       Wrap(
         spacing: 8,
         runSpacing: 8,
@@ -408,7 +413,7 @@ class _CreateFormState extends State<CreateForm> {
       _field('note', 'Note (optional)'),
       const SizedBox(height: 10),
       _hintBox(
-          'Enter the payee\'s real UPI ID — the name@bank they see in their UPI app — or scan their UPI QR from the Scan tab. Tap a handle to set the part after @.'),
+          'Enter the payee\'s real UPI ID the name@bank they see in their UPI app or scan their UPI QR from the Scan tab. Tap a handle to set the part after @.'),
     ];
   }
 
@@ -453,8 +458,8 @@ class _CreateFormState extends State<CreateForm> {
               !hasInput
                   ? 'Enter a UPI ID like name@bank'
                   : (ok
-                      ? 'Format OK — make sure it\'s the payee\'s real UPI ID'
-                      : 'Bad format — should look like name@bank'),
+                      ? 'Format OK make sure it\'s the payee\'s real UPI ID'
+                      : 'Bad format should look like name@bank'),
               style: TextStyle(
                   fontSize: 12.5, color: color, fontWeight: FontWeight.w600),
             ),

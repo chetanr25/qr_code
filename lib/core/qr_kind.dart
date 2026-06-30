@@ -105,7 +105,7 @@ QrKind detectKind(String raw) {
   return QrKind.text;
 }
 
-/// A short, human-meaningful caption derived from a QR payload — e.g. the
+/// A short, human-meaningful caption derived from a QR payload e.g. the
 /// Wi-Fi network name, the contact's name, or a shortened URL. Used as the
 /// label printed under the QR image.
 String qrCaption(QrKind kind, String data) {
@@ -114,13 +114,17 @@ String qrCaption(QrKind kind, String data) {
 
   switch (kind) {
     case QrKind.url:
-      var s = data.trim().replaceFirst(RegExp(r'^https?://', caseSensitive: false), '');
+      var s = data
+          .trim()
+          .replaceFirst(RegExp(r'^https?://', caseSensitive: false), '');
       s = s.replaceFirst(RegExp(r'^www\.', caseSensitive: false), '');
       if (s.endsWith('/')) s = s.substring(0, s.length - 1);
       return s;
     case QrKind.wifi:
       final ssid = firstGroup(RegExp(r'S:((?:[^;\\]|\\.)*);'));
-      return (ssid.isEmpty ? 'Wi-Fi' : ssid.replaceAll(RegExp(r'\\(.)'), r'$1'));
+      return (ssid.isEmpty
+          ? 'Wi-Fi'
+          : ssid.replaceAll(RegExp(r'\\(.)'), r'$1'));
     case QrKind.upi:
       final uri = Uri.tryParse(data);
       return uri?.queryParameters['pn'] ??
@@ -132,7 +136,8 @@ String qrCaption(QrKind kind, String data) {
     case QrKind.contact:
       return firstGroup(RegExp(r'^FN:(.*)$', multiLine: true), 'Contact');
     case QrKind.email:
-      return data.replaceFirst(RegExp(r'^mailto:', caseSensitive: false), '')
+      return data
+          .replaceFirst(RegExp(r'^mailto:', caseSensitive: false), '')
           .split('?')
           .first;
     case QrKind.phone:
@@ -145,7 +150,10 @@ String qrCaption(QrKind kind, String data) {
     case QrKind.geo:
       final label = firstGroup(RegExp(r'\(([^)]+)\)'));
       if (label.isNotEmpty) return Uri.decodeComponent(label);
-      return data.replaceFirst(RegExp(r'^geo:', caseSensitive: false), '').split('?').first;
+      return data
+          .replaceFirst(RegExp(r'^geo:', caseSensitive: false), '')
+          .split('?')
+          .first;
     case QrKind.event:
       return firstGroup(RegExp(r'^SUMMARY:(.*)$', multiLine: true), 'Event');
     case QrKind.text:
